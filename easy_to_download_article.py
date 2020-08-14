@@ -8,7 +8,9 @@ import re
 from bs4 import BeautifulSoup   
 import time
 from selenium import webdriver
-  
+import socket
+
+socket.setdefaulttimeout(30)   
 def crawler_download_withdriver():       
     webinput=(input('需要下载的文献的网站为(如果有多个网址请用逗号隔开):'))
     weblist=webinput.split(",")
@@ -18,8 +20,13 @@ def crawler_download_withdriver():
     for i in range(len(weblist)):
         web2='https://sci-hub.tw//'+weblist[i]
         print('analysing:',web2)
-        page = urllib.request.urlopen(web2)   
-        contents = page.read()     
+        try:
+            page = urllib.request.urlopen(web2)   
+            contents = page.read() 
+        except:
+            page = urllib.request.urlopen(web2)   
+            contents = page.read() 
+        
         soup = BeautifulSoup(contents,'lxml')
         for ul in soup.find_all('ul'):
             dl=ul.find('li')  #此时dl的格式是bs4.element.Tag
@@ -38,7 +45,7 @@ def crawler_download_withdriver():
     for url in download_list: # change here to download other files
         print('Beginning file download with Chrome: {n}'.format(n=url))
         driver.get(url) # get web
-    print('mission complete')
+    print('Mission Complete')
 
 
 if __name__ == '__main__':
