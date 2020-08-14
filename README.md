@@ -11,3 +11,6 @@ $ pip install -r requirements.txt
 
 还需要下载chromedriver：http://chromedriver.storage.googleapis.com/index.html 需要电脑已经有Chrome浏览器
 下载完将chromedriver.exe文件拖到Python的Scripts目录下
+
+2020.8.14 17:29
+更新代码 增加超时时间 以防爬虫时间超时而报错
