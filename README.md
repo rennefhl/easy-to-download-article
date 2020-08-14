@@ -18,4 +18,4 @@ $ pip install -r requirements.txt
 下载完将chromedriver.exe文件拖到Python的Scripts目录下
 
 2020.8.14 17:29
-更新代码 增加超时时间 以防爬虫时间超时而报错
+更新代码 增加超时时间 以防爬虫时间超时
