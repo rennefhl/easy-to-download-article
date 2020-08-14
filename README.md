@@ -4,6 +4,8 @@
 
 原理：通过爬虫sci-hub网址来获得下载地址，在chrome中下载（尝试过用wget和urlretrieve下载，但是下载速度太慢了，最后选择了chrome）
 
+需要python3，低版本的python需要修改urllib.request库的名字
+
 需要安装的库:
 $ pip install -r requirements.txt
 
