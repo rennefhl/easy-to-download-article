@@ -1,8 +1,8 @@
-#coding:utf-8  
-''''' 
+# -*- coding: utf-8 -*-
+"""
 @author: Renne
- 
-'''  
+"""
+
 import urllib.request   
 import re   
 from bs4 import BeautifulSoup   
@@ -10,22 +10,24 @@ import time
 from selenium import webdriver
 import socket
 
-socket.setdefaulttimeout(30)   
+socket.setdefaulttimeout(20)  
+
 def crawler_download_withdriver():       
-    webinput=(input('需要下载的文献的网站为(如果有多个网址请用逗号隔开):'))
-    weblist=webinput.split(",")
-    weblist=webinput.split("，")
+    webinput=(input('需要下载的文献的网站为(如果有多个网址请用空格隔开):'))
+    weblist=webinput.split(" ")
+
     
     download_list=[]
     for i in range(len(weblist)):
         web2='https://sci-hub.tw//'+weblist[i]
-        print('analysing:',web2)
-        try:
-            page = urllib.request.urlopen(web2)   
-            contents = page.read() 
-        except:
-            page = urllib.request.urlopen(web2)   
-            contents = page.read() 
+        for x in range(5):          
+            try:
+                print('analysing:',web2)
+                page = urllib.request.urlopen(web2)   
+                contents = page.read()
+                break
+            except:
+                print('Fail analysing')
         
         soup = BeautifulSoup(contents,'lxml')
         for ul in soup.find_all('ul'):
@@ -39,7 +41,7 @@ def crawler_download_withdriver():
         result=pattern.findall(dlstr)
         download_list=download_list+result
         print('Finish analysing')
-        time.sleep(5)
+        time.sleep(2)
                
         
     for url in download_list: # change here to download other files
@@ -51,6 +53,3 @@ def crawler_download_withdriver():
 if __name__ == '__main__':
     driver = webdriver.Chrome() #open chrome
     crawler_download_withdriver()
-
-
-
