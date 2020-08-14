@@ -4,6 +4,11 @@
 
 原理：通过爬虫sci-hub网址来获得下载地址，在chrome中下载（尝试过用wget和urlretrieve下载，但是下载速度太慢了，最后选择了chrome）
 
+
+注意：
+使用时会先弹开一个Chrome浏览器窗口，注意不要关闭，它是为了下载文件而打开的，当您确认了所有文件下载完成后可以关闭
+
+
 需要python3，低版本的python需要修改urllib.request库的名字
 
 需要安装的库:
